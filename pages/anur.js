@@ -90,7 +90,7 @@ function Anur() {
                     src="https://narahubung.id/wp-content/uploads/2020/07/cow-goat_57812-2.jpg"
                 />
                 } 
-                title="Qurban" extra={Number(totalQurban) <= 1000000 && <a onClick={showQurban}>TRANSFER</a>} style={{ width: 500 }}>
+                title="Qurban" extra={Number(totalQurban) < 1000000 && <a onClick={showQurban}>TRANSFER</a>} style={{ width: 500 }}>
                 <p>Qurban untuk Masjid An-Nur membutuhkan dana Rp. 1000000</p>
                 {Number(totalQurban) >= 1000000 && <p style={{color: 'blue'}}>Qurban untuk Masjid An-Nur sudah memenuhi kebutuhan</p>}
                 <Divider />
