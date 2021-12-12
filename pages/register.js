@@ -1,39 +1,29 @@
-import react, {useState, useEffect} from 'react'
-import styles from '../styles/Home.module.css'
+import React from 'react'
 import { useRouter } from 'next/router'
-import { Form, Input, Button, notification } from 'antd';
+import styles from '../styles/Home.module.css';
+import { Form, Input, Button, notification, Select } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-export default function Home() {
+function Register() {
   const router = useRouter()
 
   const openNotificationWithIcon = type => {
     notification[type]({
-      message: 'Username Password Salah',
+      message: 'Register Berhasil',
     });
   };
 
-  const onFinish = (values) => {
-    if(values.username === 'jamaah' || values.password === 'jamaah') {
-       router.push('masjid')
-    }
-    else if(values.username === 'masjid' || values.password === 'masjid') {
-      router.push('mosque')
-    } else {
-      openNotificationWithIcon('error')
-    }
-  };
+const onFinish = (values) => {
+    openNotificationWithIcon('success')
+    setTimeout(() => {
+      router.push('./')
+    }, 500);
+};
 
-  const register = () => {
-    router.push('register')
-  }
-
-  return (
-      <div className={styles.container}>
+    return (
+        <div className={styles.container}>
         <div className={styles.wrapper}>
-          <h1>E-MASJID</h1>
-          <br/>
-          <h2>LOGIN</h2>
+          <h2>Register Akun</h2>
         <Form
       name="normal_login"
       className={styles['login-form']}
@@ -68,20 +58,21 @@ export default function Home() {
           placeholder="Password"
         />
       </Form.Item>
-
       <Form.Item>
-        <Button type="link" className={styles['login-form-button']} onClick={register}>
-          Register
-        </Button>
+        <Select defaultValue="Pilih Pengguna">
+          <Select.Option value="jamaah">Jamaah</Select.Option>
+          <Select.Option value="masjid">Masjid</Select.Option>
+        </Select>
       </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit" className={styles['login-form-button']}>
-          Log in
+          Register
         </Button>
       </Form.Item>
     </Form>
       </div>
     </div>
-  )
+    )
 }
+
+export default Register
